@@ -1,0 +1,140 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage{babel}
+\topmargin 0truecm
+\textheight 22truecm
+\textwidth 16truecm
+\oddsidemargin 0truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+\usepackage{color}
+
+\def\d{\,{\rm d}}
+
+
+%   COLORS
+\definecolor{light-blue}{rgb}{0.8,0.85,1}
+\definecolor{mygrey}{gray}{0.75}
+%
+%
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: http://www.famaf.proed.unc.edu.ar/course/view.php?id=451} \\
+
+\rule{0em}{2.em}{\bf Gu\'{i}a 5} \\ Mayo de 2020
+\end{center}
+
+
+
+\prob{} Sea $F(x) = x e^x$. Eval\'ue $f^\prime (2)$ mediante la f\'ormula centrada de tres puntos
+
+\[
+f^\prime(x) = \frac{f(x+h) - f(x-h)}{2h} + \mathcal{O}(h^2)
+\]
+\noindent
+para distintos valores de $h$ y calcule el incremento \'optimo $h_o$
+teniendo en cuenta los errores de truncamiento y redondeo. Grafique
+el error (usando el valor exacto de la derivada) versus $h$ (elija
+$h = 10^{-k}$, con $k$ entero, y grafique usando escala {\em log-log}).
+
+
+
+\prob{ F\'ormula de la derivada num\'erica de 5 puntos:} 
+Para funciones $f(x)$ que son suficientemente diferenciables en $x=c$
+
+%\marginpar{ \colorbox{light-blue}{entregar}}
+
+\begin{enumerate}
+\item muestre que se  puede aproximar
+$f'(c)$ con la f\'ormula centrada de 5 puntos como:
+\[
+f'(c)\,=\,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
+\right)\,+\,O(h^4) ,
+\]
+%\[
+%f''(c)\,=\,\frac{1}{12 h^2} \left(-f(c-2 h)+16 f(c-h)-30 f(c)+16 f(c+h)-f(c+2 h)
+%\right)\,+\,O(h^4) .
+%\]
+
+
+\item muestre que con esta f\'ormula se obtiene la derivada primera exacta para polinomios de grado $\le 4$.
+
+
+\end{enumerate}
+
+
+
+\prob{} Use las f\'ormulas {\em hacia adelante}, {\em centrado} y {\em de 5 puntos} para
+calcular las derivadas de $\cos x$ y $e^x$, en $x=0.1, 1.$ y $100$.  
+\begin{enumerate}
+\item Escriba en archivo el valor de la derivada y el error relativo, $E$, en funci\'on 
+de $h$. Elija valores del {\em paso} $h$ entre 0.1 y $\epsilon_m$.
+\item Haga un gr\'afico {\em log--log} de $E$  versus $h$, y verifique si el n\'umero
+de cifras decimales que obtiene coincide con las estimaciones hechas en el te\'orico.
+\item Identifique las regiones donde domina el error del algoritmo y el error de redondeo,
+respectivamente. Las pendientes que se observan, corresponden a las predichas en el 
+te\'orico?
+\end{enumerate}
+
+\prob{} En el archivo {\em pos.dat} (que se encuentra en el directorio {\em /opt/metnum/}) 
+se dispone de un conjunto de datos experimentales de la posici\'on de un m\'ovil
+que se desplaza en l\'inea recta. El mismo tiene dos columnas, siendo la primera el tiempo de 
+la medici\'on, $t_i$ y la segunda la posici\'on, $x(t_i)$. 
+\begin{enumerate}
+\item Escriba un programa que lea los datos del archivo y calcule la velocidad del m\'ovil 
+      para los mismos tiempos, $t_i$. Utilice la f\'ormula de 3 puntos. 
+      Preste especial atenci\'on a los puntos de los bordes del intervalo.
+
+\item Repita el punto {\bf a)}  utilizando las f\'ormulas de 5 puntos.
+
+%\item Modifique el programa anterior de manera que tambi\'en calcule la derivada segunda.
+
+\end{enumerate}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% problemas teoricos
+
+
+\noindent {\bf Ejercicios Complementarios}
+
+
+\prob{ Derivada segunda:} Deduzca la f\'ormula centrada equiespaciada de tres puntos
+para la derivada segunda $f"(x_0)$. Incluya una cota para el error absoluto.
+
+\prob{ Interpolaci\'on y diferenciaci\'on:}
+Se conoce el valor de $f(x)$ en tres puntos $x_0,x_1,x_2$. Escriba el polinomio
+interpolante $P_2(x)$ en la forma de Lagrange.
+Asuma que aproximamos $f'(x_i)$ por $P_2'(x_i)$,
+\begin{enumerate}
+\item Muestre que si tomamos
+$x_0=c-h,\,x_1=c,\,x_2=c+h$ obtenemos la expresi\'on del algoritmo centrado de tres
+puntos para $f'(c)$.
+\item Muestre que, en general, esta proximaci\'on arroja el algoritmo de tres puntos.
+Re-obtenga la f\'ormula dada en el te\'orico para $x_0=c-h_1,\,x_1=c,\,x_2=c+h_2$.
+Obtenga una expresi\'on para las derivadas en extremos del intervalo $[a,b]$,
+$f'(a)$ con $x_0=a,\,x_1=a+h,\,x_2=a+2 h$ y $f'(b)$ con $x_0=b,\,x_1=b-h,\,x_2=b-2h$.
+\item Generalice a 5 puntos y re-obtenga el algoritmo centrado y equiespaciado en
+este caso.
+\end{enumerate}
+
+
+\end{document}

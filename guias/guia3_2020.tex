@@ -1,0 +1,192 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage{babel}
+\topmargin 0truecm
+\textheight 22truecm
+\textwidth 16truecm
+\oddsidemargin 0truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: http://www.famaf.proed.unc.edu.ar/course/view.php?id=451} \\
+
+\rule{0em}{2.em}{\bf Gu\'{i}a 3} \\ Abril de 2020
+\end{center}
+
+% p1
+
+\prob{} Desarrolle un programa para encontrar la raíz de una función
+$f$ utilizando el método de la bisección, dando como datos de entrada
+el intervalo inicial $[a,b]$ y la tolerancia $\varepsilon$. $f$ 
+debe definirse como una función dentro del programa (usando CONTAINS), o
+en un m\'odulo separado.
+La salida debe ser 
+\begin{itemize}
+\item archivo con cinco columnas: $N$, $x_N$, $f(x_N)$, $|b-a|/2$ (error absoluto), y $|b-a|/|a+b|$ (error relativo), 
+con 12 cifras significativas para los reales.
+\item la aproximación final $x_N$  (en pantalla)
+\item el valor final de $f(x_N)$.  (en pantalla)
+\item el n\'umero de iteraciones realizadas  (en pantalla)
+\end{itemize}
+
+\noindent
+Utilice el programa  para
+
+\noindent a) encontrar la menor soluci\'on positiva de la ecuaci\'on $2x = \tan{(x)}$ con un error menor a $10^{-5}$. Cu\'antos pasos son necesarios si se comienza con el intervalo $[0.8,1.4]$?
+
+\noindent b) encontrar una aproximaci\'on a $\sqrt{3}$ con un error menor a
+ $10^{-5}$. Note que $\sqrt{3}$ es la raíz positiva de la ecuación $f(x)=x^2 -3$.
+
+
+
+\bigskip
+
+%2 
+\prob{}
+Desarrolle un programa para encontrar la raíz de una función
+$f$ utilizando el método de Newton--Raphson, dando como datos de entrada
+una estimación inicial $x_0$, la tolerancia \verb|tol| y un
+número máximo de iteraciones \verb|MAX_ITE|.
+El programa debe finalizar cuando se satisfaga una de las siguientes
+condiciones:
+$$
+\frac{|x_N - x_{N-1}|}{|x_N|} < \varepsilon, \qquad
+|f(x_N)| < \varepsilon, \qquad
+\mbox{Número de iteraciones} = \verb|MAX_ITE|
+$$
+El programa debe retornar (en pantalla) el número de iteraciones realizadas, el valor final de
+la aproximación $x_N$, el error relativo estimado, y el valor de $|f(x_N)|$.  $f$ y
+$f^{\prime}$ deben ser funciones del programa. Adem\'as, en un archivo, debe escribir
+en cada iteraci\'on: $N$, $x_N$, $f(x_N)$ y $|x_N - x_{N-1}|/|x_N|$, con 13 cifras significativas para los reales.
+
+Utilice este programa para resolver los incisos a) y b) del problema 1. 
+Compare la cantidad de evaluaciones de la funci\'on y su derivada en 
+los dos m\'etodos.
+
+\bigskip
+
+%10 
+\prob{} Grafique el error relativo y el error relativo estimado ($|x_k - x_{k-1}|/|x_k|$) 
+de la aproximaci\'on $k$-\'esima de $\sqrt{3}$  (pensada como ra\'iz de la funci\'on $f(x) = x^2-3$) 
+en funci\'on de $k$, empleando el m\'etodo de bisecci\'on (use el intervalo inicial $[0.,2.5]$ y el 
+de Newton--Raphson (use $x_0 = 2.5$). 
+Escriba los programas en doble precisi\'on, y fije una tolerancia de $10^{-10}$ como
+criterio de detenci\'on. Compare los resultados en un \'unico gr\'afico en 
+escala {\em log -- log}. Cree un archivo {\em postscript color} con el gr\'afico.
+Recuerde de poner t\'itulo, nombre a los ejes y leyendas para las distintas curvas.
+\bigskip
+
+\bigskip
+
+%12 
+%\prob{} Dado el siguiente polinomio
+%\[
+%p(x) = -10 + 5 x - 12 x^2  + 6 x^3  - 2 x^4  + x^5 \ .
+%\]
+%\noindent
+%Grafique el mismo utilizando {\em gnuplot} y observe que posee 
+%una \'unica ra\'iz real positiva, encuentre la misma utilizando:
+%
+%\begin{enumerate}
+%\item El m\'etodo de bisecci\'on. Elija los valores iniciales utilizando
+%los teoremas que acotan la regi\'on del espacio complejo donde se encuentran las ra\'ices.
+%Eval\'ue el polinomio en una subrutina y utilice el algoritmo de Horner.
+%
+%\item El m\'etodo de Newton-Raphson. Elija el valor inicial utilizando
+%los teoremas que acotan la regi\'on del espacio complejo donde se encuentran las ra\'ices.
+%Eval\'ue el polinomio y su derivada en una subrutina utilizando el algoritmo de Horner.
+
+%\end{enumerate}
+
+%13
+\prob{} Un objeto en ca\'{i}da vertical en el aire est\'a sujeto a la fuerza
+de gravedad y a la resistencia del aire. Si un objeto de masa $m$ es
+dejado caer desde una altura $h_0$, su altura luego de $t$ segundos est\'a
+dada por:
+$$
+h(t) = h_0 - \frac{mg}{k} t + \frac{m^2 g}{k^2} \left( 1 - e^{-kt/m}\right)
+$$
+\noindent
+donde $g=9.8\, m/s^2$ y $k$ representa el coeficiente de resistencia del aire
+en $kg / s$.
+Suponga que $h_0 = 10m$, $m=0.1\, kg$, y $k = 0.149\,  kg/s$.
+Grafique $h(t)$ usando {\em gnuplot} para analizar su comportamiento.
+Encuentre, con una precisi\'on de $0.01\,s$, el tiempo que le toma a este
+objeto llegar al suelo. Utilice el m\'etodo de bisecci\'on y el de
+Newton--Raphson.
+
+%
+\prob{} Resuelva numé\-ricamente, utilizando el método de Newton-Raphson, 
+el problema de encontrar la raíz que satisfaga $x^3 - 2x - 5 = 0$.
+
+Utilizando calculadora y siete cifras decimales calcule los primeros elementos de la secuencia,
+comenzando con $x_0 = 2.000000$. Pare cuando el error absoluto en el eje de las abcsisas, 
+definido como $\epsilon_x= |x_n - x_{n-1} |$ sea menor a $10^{-5}$.
+Escriba en un papel a mano una tabla que en cada fila tenga $n$, $x_n$, $f(x_n)$ y $\epsilon_x$.
+
+\bigskip
+
+\bigskip
+
+\noindent {\bf Ejercicios Complementarios}
+
+
+
+\prob{}  Escriba un programa para hallar ls soluci\'on a la ecuaci\'on 
+\[
+x - \cos x = 0 
+\]
+\noindent
+en el intervalo $[0, \pi/2]$.
+\begin{enumerate}
+\item utilizando el m\'etodo de la secante.
+
+\item utilizando el m\'etodo de {\em Regula Falsi}.
+\end{enumerate}
+
+%11 
+\prob{}
+Adapte el programa de Newton--Raphson para calcular
+una aproximaci\'on a la ra\'{\i}z c\'ubica de un n\'umero 
+$R$ positivo. La entrada debe
+ser el n\'umero $R$, la aproximaci\'on inicial $x_0$
+y el error m\'aximo permitido $\varepsilon$.
+ 
+
+%\prob{} Aplicar algoritmo de Newton-Raphson generalizado al siguiente sistema de 
+%ecuaciones no lineales:
+%\begin{eqnarray*}
+%2x + \cos (y) &=& 0 \\
+%2y + \sin (x) &=& 0
+%\end{eqnarray*}
+%\noindent
+%Grafique primero las funciones, y encuentre la soluci\'on gr\'aficamente.
+%Implemente un programa para resolver este sistema que tome como valor
+%incial el par $(0,0)$, y escriba los valores sucesivos de los pares $(x_k,y_k)$
+%obtenidos en la iteraci\'on $k$ y la estimaci\'on del error absoluto, definido commo
+%$||{\bf e}_k||_\infty = || {\bf x}_k - {\bf x}_{k-1}||_\infty \equiv 
+%{\tt max}(|x_k - x_{k-1}|,|y_k - y_{k-1}|)$. El programa debe detenerse cuando
+%$||{\bf e}_k||_\infty < 10^{-6}$.
+
+
+
+\end{document}

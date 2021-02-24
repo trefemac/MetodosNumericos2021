@@ -1,0 +1,250 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+
+\topmargin 0truecm
+\textheight 22truecm
+\textwidth 16truecm
+\oddsidemargin 0truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\newcommand{\itemEq}[1]{%
+        \begingroup%
+        \setlength{\abovedisplayskip}{0pt}%
+        \setlength{\belowdisplayskip}{0pt}%
+        \parbox[c]{\linewidth}{\begin{flalign*}#1&&\end{flalign*}}%
+        \endgroup}
+
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: http://www.famaf.proed.unc.edu.ar/course/view.php?id=452} \\
+
+\rule{0em}{2.em{\bf}Gu\'ia 7} \\  Junio de 2020
+\end{center}
+
+
+
+\prob{}
+Escriba un programa en Fortran que le permita resolver numéricamente
+el problema de valores iniciales de la forma,
+\[
+\frac{dy}{dt} = f(t,y),\;\;\;\;\;\; a\leq t \leq b,\;\;\;\;\; y(a) = \alpha
+\]
+utilizando los métodos de Euler, Runge Kutta de 2$^{\circ}$ orden y Runge 
+Kutta de 4$^{\circ}$ orden en el intervalo $a\le t\le b$ con un paso de
+integración $h$. 
+El programa debe usar un m\'odulo de precisi\'on y  
+ un m\'odulo que contenga tres subrutinas, una para el paso de integraci\'on de cada m\'etodo,
+y la funci\'on f(t,y). 
+Utilice una variable entera (entrada por teclado) para seleccionar el m\'etodo 
+a utilizar, y de acuerdo a \'este, el programa debe generar un archivo de salida 
+(con nombre indicativo del m\'etodo) con dos columnas separadas por 3 espacios, en formato exponencial, 
+con 7 cifras significativas: $t_i= a + i\,h$ y la correspondiente aproximaci\'on $w_i$ a la soluci\'on 
+exacta $y(t_i)$.
+
+
+\prob{}
+Utilizando el programa realizado en el problema 1, resuelva
+con los tres m\'etodos dados en el te\'orico (Euler, Runge Kutta de 
+segunda orden y Runge Kutta de cuarta orden) el siguiente problema de 
+valores iniciales:
+\[
+\frac{dy}{dt} = -y+\sin(2\pi t), \;\;\;\;\;\; 0 \le t \le 1\; , 
+\;\;\;\;\; y(0) = 1.0
+\]
+en el intervalo $0 \le t \le 1$ con un paso de integración $h=0.1$. 
+Sabiendo que la solución exacta es:
+\[
+x_e(t)=\Bigl(1+\frac{2\pi}{1+4\pi^2}\Bigr)e^{-t}+\frac{\sin(2\pi t)-2\pi
+    \cos(2\pi t)}{1+4\pi^2},
+\]
+modifique el programa de forma tal que calcule, para cada m\'etodo,
+también el error global $\epsilon(t) = |y(t)-y_e(t)|$. Usando gnuplot observe que su solución se aproxima a la solución exacta. 
+Grafique $\epsilon(t)$ usando $h=0.01$ y $h=0.005$ para cada m\'etodo (no olvide hacer gráficas completas, en color, con leyendas apropiadas, título, ejes y rangos adecuados  que muestren claramente la conclusión del problema).
+Discuta los resultados.
+
+\smallskip
+
+\prob{}
+Considere el problema de valor inicial:
+\[
+\frac{dy}{dx} = \sin{(y)},\;\;\;\;\;\; 0\le t\le 20.0, \;\;\;\;\; y(0)=\alpha
+\]
+Resu\'elvalo para los siguientes valores iniciales $\alpha_1=0.5$,
+$\alpha_2=2.0$, $\alpha_3= \pi$, $\alpha_4=3.6$ $\alpha_5=5.5$ y 
+$\alpha_6=2\pi$, en todos los casos con $h=0.1$. 
+Para cada valor inicial genere un archivo de salida
+como el indicado en el problema 1 (solo para RK4). Luego grafique
+simultáneamente las seis curvas aproximadas a las soluciones de los
+seis problemas de valores iniciales (no olvide hacer un gráfico de calidad, completo). Analice.
+
+
+\prob{ M\'etodo de Runge-Kutta de orden 4: } Muestre que la elecci\'on dada en el
+te\'orico para los pesos $\vec{b}$, los nodos $\vec{c}$ y la matriz {\bf A} para el m\'etodo RK4:
+\[
+\vec{b}=(1/6,1/3,1/3,1/6)  \;\;\;;\;\;\; \vec{c}=(0,1/2,1/2,1)
+\;\;\;;\;\;\; a_{2,1}\,=\,a_{3,2}\,=\,1/2 \;;\;a_{4,3}\,=\,1
+\]
+
+\noindent conduce a las ecuaciones RK4 ``cl\'asicas" dadas en clase.
+
+\smallskip
+
+\prob{}
+Considere el problema de valores iniciales para la ecuación de la dinámica
+de un péndulo simple de longitud $l$
+\[
+\frac{d^2\theta}{d t^2} = - \frac{g}{l} \sin{(\theta)}, \quad
+\theta(0)=\theta_0, \quad \frac{d\theta}{d t}(0)= \dot{\theta}_0,
+\]
+donde $g$ es la acelaración de la gravedad. Definiendo  $u= \dot{\theta}$ esta ecuación
+de segundo orden se puede escribir como un sistema de dos ecuaciones de primer
+orden
+\begin{align}
+\frac{d\theta}{d t} &= u \label{uno}\\
+\frac{d u}{d t} &= - \frac{g}{l} \sin{(\theta)} \label{dos}
+\end{align}
+mientras que las condiciones iniciales transformadas quedan
+$(u(0),\theta(0))=(\dot{\theta}_0,\theta_0).$
+
+Utilice y modifique el programa del problema 1 de forma tal que resuelva 
+ahora este sistema de dos ecuaciones diferenciales ordinarias acopladas 
+utilizando el m\'etodo de Runge Kutta de 4$^{\circ}$ orden con $g=10 m/s^2$ 
+y $l=1 m.$ Ahora la salida debe ser un archivo de tres columnas $t$, 
+$\theta(t)$ y $u(t)$.
+\begin{enumerate}
+\item Grafique $\theta$ vs. $t,$ para $0\le t\le 10,$ con las siguientes
+condiciones iniciales: a) $u(0)=0$ y $\theta(0)=0.5$ y b) $u(0)=0$ y
+$\theta(0)=0.25$
+
+\item Modifique el programa para que calcule la energ\'ia del sistema en cada paso,
+y la escriba en un archivo de salida. Para las condiciones del inciso anterior
+grafique la energ\'ia vs. $t$. Analice la conservaci\'on para distintos valores de $h$.
+
+
+\item Para las condiciones iniciales $\theta(0)=\theta_0,$ y $u(0)=0,$ y sólo
+cuando $\theta_0\ll 1,$ las ecuaciones de movimiento del p\'endulo se pueden
+aproximar por las siguientes:
+\begin{align}
+\frac{d\theta}{d t} &= u\\
+\frac{d u}{d t} &= - \frac{g}{l} \theta .
+\end{align}
+\noindent
+Modifique el programa para resolver estas ecuaciones y compare con la
+ solución exacta ($\theta(t) = \theta_0 \cos(\sqrt{10}t).$)
+ Para verificar esto graficar la diferencia $\theta(t)-\theta_0
+\cos(\sqrt{10}t),$ para $0\le t\le 10,$ en los casos $\theta_0=1$ y
+$\theta_0=10^{-2}$. En los mismos gr\'aficos comparar con la soluci\'on
+exacta del problema, i.e. con la soluci\'on num\'erica de las ecuaciones (\ref{uno}) y
+(\ref{dos}).
+
+\end{enumerate}
+
+\smallskip
+
+
+\begin{center}
+{\bf Problemas complementarios}
+\end{center}
+
+\smallskip
+
+\prob{  }  Use el m\'etodo del disparo para resolver los siguientes problemas de 
+frontera con una tolerancia de $10^{-5}$. Se da un valor tentativo inicial de $h$ 
+y la soluci\'on exacta  para comparaci\'on.
+ 
+\begin{enumerate}
+\item $1\leq t\leq 2$, comience con $h=0.5$
+\[
+\ddot{x}\,=\,-(\dot{x})^2 \,,\;\;\;x(1)=0\;,\;\;x(2)=\ln{(2)} \,.
+\]
+\noindent Soluci\'on exacta $x=\ln{(t})$.
+
+\item $-1\leq t\leq 0$, comience con $h=0.25$
+\[
+\ddot{x}\,=\,2 x^3\,,\;\;\;x(-1)=\frac{1}{2}\;,\;\;x(0)=\frac{1}{3} \,.
+\]
+\noindent Soluci\'on exacta $x=1/(t+3)$.
+
+\item $1\leq t\leq 2$, comience con $h=0.05$
+\[
+\ddot{x}\,=\,\frac{(t\,\dot{x} )^2\,-9 x^2+4 t^6}{t^5},\;\;\;x(1)=0\;,\;\;x(2)=\ln{(256)} \,.
+\]
+\noindent Soluci\'on exacta $x=t^3\,\ln{(t})$.
+
+
+
+\end{enumerate}
+
+
+
+\prob{}  Considere la siguiente ecuaci\'on diferencial
+\[
+y^{\prime \prime} = \frac{1}{8} \left( 32 + 2 x^3 - y y^\prime \right)    \qquad \qquad \mbox{para }
+1 \le x \le 3
+\]
+\noindent
+\begin{enumerate}
+\item Utilice el método de Runge-Kutta de 4$^{\circ}$ orden en el intervalo $1 \le
+x\le 3$ para resolver esta ecuaci\'on con las condiciones iniciales $y(1) = 17$, $y^\prime (1) = 0$.
+Encuentre, adem\'as $y^\prime (3)$.
+
+\item Repita el inciso anterior, pero con las condiciones iniciales $y(1) = 17$, $y^\prime (1) = -40$.
+
+\item Use ahora el m\'etodo de disparo para resolver la misma ecuaci\'on diferencial con las condiciones 
+de borde $y(1) = 17$, $y^\prime (3) = 0$. Con la informaci\'on de los incisos anteriores implemente
+un m\'etodo de bisecci\'on con una tolerancia de $10^{-10}$. Escriba en archivo el n\'umero de la 
+iteraci\'on y el valor de la derivada en $x=3$, y una vez encontrada la soluci\'on, en 
+otro archivo, escriba $x$, e $y(x)$, para una grilla de 400 valores equiespaciados de $x$, entre
+0 y 3. Grafique la convergencia y la soluci\'on.
+
+
+\end{enumerate} 
+
+
+\prob{}
+La llamada {\em ecuación log\'{\i}stica}
+$$
+\frac{dN}{dt}= r\,N \left(1-\frac{N}{K}\right)
+$$
+describe el crecimiento autolimitado de una población dada (suponiendo que no
+interactúa con otras especies y que tiene fuentes limitadas de alimentos). Fue
+propuesta por Verhulst en 1838 y permite describir al menos cualitativamente
+varios fenómenos poblacionales observados en la naturaleza. En esta ecuación
+$N(t)$ es el número de individuos de la colonia al tiempo $t$ y $K$ es una
+constante positiva.
+
+Una solución $N^*$ se dice estacionaria si se satisface que $dN^*/dt=0$, y por
+ende no cambia en el tiempo. Para esta ecuación es fácil verificar que
+sólo existen dos soluciones estacionarias: $N_1^*=0$ y $N_2^*=K$.
+
+Determine cuál de las dos soluciones estacionarias es estable y cuál inestable
+resolviendo numéricamente la ecuación diferencial con el método
+Runge-Kutta de cuarto orden para $r=2$, $K=100$, en el intervalo $0\le t \le 50$
+con $h=0.1$ y considerando cinco condiciones iniciales diferentes: a) $N(0)= 0$,
+b) $N(0)=2$, c) $N(0)=50$, d) $N(0)= 120$ y d) $N(0)=200$.  Grafique
+simultáneamente las cinco soluciones $t$ vs.  $N(t)$ en el intevalo $0\le t\le
+50$ en un gráfico completo.
+
+\end{document}

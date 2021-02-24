@@ -1,0 +1,338 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+%\usepackage{babel}
+\topmargin 0truecm
+\textheight 23truecm
+\textwidth 16.5truecm
+\oddsidemargin 0truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: http://www.famaf.proed.unc.edu.ar/course/view.php?id=547} \\
+
+\vspace*{1.5cm} 
+\rule{0em}{2.em}{\bf Gu\'{i}a 1} \\ Marzo de 2020
+\end{center}
+\vspace*{.5cm} 
+
+\prob{} En una terminal, cree un directorio nuevo. Descargue desde el
+navegador el archivo de esta gu\'ia y mueva el mismo al nuevo directorio.
+Cambie el nombre del archivo a {\em guia1.pdf} y copie el archivo a otro 
+con nombre {\em Copia.pdf}.  Luego, liste el contenido del
+directorio y verifique los nombres y el tama\~no y fecha de los mismos.
+Averig\"ue qu\'e espacio ocupa el directorio usando el comando {\em du -h}.
+Finalmente, borre todos los archivos y el directorio.
+
+\prob{} Utilice el programa {\em gnuplot} para graficar la funci\'on
+$f(x) = \sin (2\pi x)$, para $x  \in [0:5]$. Ajuste la cantidad de puntos
+que usa gnuplot para graficar ({\em samples}) a 500 para mejorar la calidad
+del gr\'afico. De nombre a los ejes, t\'itulo al gr\'afico y defina la
+leyenda para que aparezca $f(x)$.
+
+\prob{} Abra una terminal y realice las siguientes acciones:
+\begin{enumerate}
+\item Cree un directorio con el nombre {\em MetNum}
+
+\item En ese nuevo directorio ejecute el editor {\em kate} liberando
+la línea de comandos (utilice el símbolo $\&$ o suspenda el proceso con 
+{\em Ctrl + Z} y luego ingrese {\em bg}).
+
+\item En el editor de texto ingrese los siguientes datos en tres columnas,
+separados por dos espacios:
+\begin{center}
+\begin{tabular}{ccc}
+0.0  & 1.0  & 1.2\\
+1.0  & 1.5  & 1.6  \\
+2.0  & 2.0  & 2.0 \\
+3.0  & 2.5  & 2.4 \\  
+\end{tabular}
+\end{center}
+\noindent
+Grabe esta tabla en el archivo {\em datos.dat}. Aseg\'urese que est\'e
+en el directorio {\em MetNum}. No cierre el editor. 
+
+\item Ahora utilice {\em gnuplot} para graficar la 2da y la 3er columna versus
+la primera. Grafique usando solo puntos. En el mismo gr\'afico incluya las funciones 
+$y = 0.5 x + 1$ y $y=0.4 x + 1.2$. Nombre al eje horizontal {\em x} y al vertical {\em y}. Habilite la grilla. Titule el gr\'afico {\em Funciones lineales}. Cree archivos
+de salida en formato postscript color y blanco y negro (elija nombres con 
+terminaci\'on .ps). Abra otra terminal y con la aplicaci\'on {\em  okular} visualice
+los archivos de salida, a medida que los va generando). Lluego, experimente graficar 
+cambiando el tama\~no de los puntos y el grosor de las l\'ineas, etc. Modique el archivo en la ventana de {\em kate} (que est\'a abierta) y actualice el gr\'afico para constatar los cambios. Finalmente, cierre {\em gnuplot}.
+
+%\item Realice un gr\'afico similar usando la aplicaci\'on {\em xmgrace}. Explore las distintas alternativas que ofrece esta apliaci\'on. 
+
+\item Liste los archivos del directorio mostrando su tama\~no y fecha. Averigüe qu\'e
+espacio ocupa el directorio {\em MetNum}. Finalmente, cierre la ventana del editor. 
+Borre los archivos postscript y cierre la terminal.
+\end{enumerate}
+
+
+\newpage
+% 
+\prob{} Evaluar (en papel y l\'apiz) las siguientes expresiones, anticipando el
+resultado de estas operaciones en Fortran 90. Verifique programando las mismas en Fortran 90.
+\begin{enumerate}
+\item {\tt 5 / 2 + 20/ 6} 
+\item {\tt 4 * 6 / 2 - 15 / 2}
+\item {\tt 5 * 15 / 2 / (4 - 2)} 
+\item {\tt 1 + 1/4}
+\item {\tt 1. + 1/4}
+\item {\tt 1 + 1./4}
+\item {\tt 1. + 1./4.}
+\end{enumerate}
+
+\prob{}   Evaluar (en papel y l\'apiz) las siguientes operaciones
+usando matem\'atica exacta y {\em matem\'atica  de enteros de 2 bytes} (Integer(2)). 
+Verifique sus resultados escribiendo un c\'odigo en Fortran 90. 
+\begin{enumerate}
+\item {\tt 32767 + 1}
+\item {\tt 30000*2}  
+\item {\tt -30000 - 10000}  
+\end{enumerate}% 2
+\prob{} Escriba un programa que pida dos n\'umeros reales e imprima en la
+pantalla el mayor de ellos. El programa debe indicar si los n\'umeros son iguales.
+
+% 3
+\prob{} Escriba un programa que pida un n\'umero entero y determine si es
+m\'ultiplo de 2 y de 5.
+
+% 4
+\prob{} Escriba una programa que ingrese los coeficientes $A$, $B$ y $C$ de un
+polinomio real de segundo grado ($A x^2 + B x + C$), calcule e imprima en
+pantalla las dos ra\'ices del polinomio en formato complejo $a + i b$, sin
+utilizar algebra compleja.
+
+
+\prob{} Escriba un programa que permita convertir n\'umeros naturales con base 
+$10$ a la base $b <= 16$. El programa
+debe pedir como entrada $b$ y el n\'umero natural a convertir (que debe estar en
+base 10). 
+
+% 5
+%\prob{} Dise\~nar una funci\'on que calcule la potencia en\'esima de un n\'umero, es
+%decir que devuelva $X^n$ para $X$ real y $n$ entero. Realice un programa que
+%utilice la funci\'on e imprima en pantalla las primeras 5 potencias naturales de
+%un n\'umero ingresado.
+
+
+%\prob{} Los per\'{\i}metros $\pi_k$ de poligonos regulares de $k$ lados inscriptos en un 
+%c\'{\i}rculo de diametro unidad son $\pi_8=3.061467,\,\pi_{16}=3.121445,\,\pi_{32}=3.136548,\,\pi_{64}=3.140331$ 
+%respectivamente, mientras que los per\'{\i}metros de poligonos regulares circunscriptos% son 
+% $\Pi_8=3.313708,\,\Pi_{16}=3.182598,\,\Pi_{32}=3.151725,\,\Pi_{64}=3.144118$
+%respectivamente.  Asuma que 
+%
+%\[
+%\pi_k\,=\,c_0+\frac{c_1}{k}+\frac{c_2}{k^2}+\frac{c_3}{k^3}+\ldots \;\;\;;\;\;\;
+%\Pi_k\,=\,C_0+\frac{C_1}{k}+\frac{C_2}{k^2}+\frac{C_3}{k^3}+\ldots
+%\]
+%
+%De una estimaci\'on para $\pi$.
+%Compare este resultado con la mejor evaluaci\'on que se puede obtener con el algoritmo %de 
+%Arq\'{\i}medes.
+
+% 7
+\prob{} Escriba un programa para calcular un valor aproximado de $\pi$
+utilizando 
+\begin{enumerate}
+\item la f\'ormula recurrente de Arqu\'imedes, que  acota $\pi$ entre
+$P_n$ y $p_n$, con $p_n < \pi < P_n$. Siendo $p_n$ y $P_n$ 
+los per\'imetros de los pol\'igonos regulares de $n$ lados inscriptos y 
+circunscriptos, respectivamente, en la circunsferencia de radio $1/2$. 
+La f\'ormula de recurrencia que encontr\'o Arqu\'imides es la siguiente:
+\begin{align*}
+P_{2n} = \frac{2 p_n P_n}{p_n + P_n} \\
+p_{2n} = \sqrt{P_{2n} p_n}
+\end{align*}
+Usando los valores $P_6=2\sqrt{3}$ y $p_6 = 3$, correspondientes al hex\'agono, 
+escriba un programa que realice 20 iteraciones, con $n = 6\times 2^k$, y 
+$k=1, \cdots, 20$, y escriba los resultados en pantalla.
+
+\item la productoria de Wallis
+\[
+\frac{\pi}{2} = \prod_{n=1}^\infty \frac{(2n)^2}{(2n)^2-1} =
+\frac43\frac{16}{15}\frac{36}{35}\frac{64}{63}\dots 
+%\frac21\frac23\frac43\frac45\frac65\frac67\dots 
+\]
+Calcule el valor de $\pi$ truncando la productoria a $10^6$ factores.
+
+\end{enumerate}
+
+
+%%%%%%%%%%  comienzo guia_c
+
+
+\prob{} Modifique el programa que convierte numeros decimales a la
+base $b$, con $b \le 16$, de manera que utilice {\tt SELECT CASE}
+para asignar los d\'igitos (del resultado en base $b$). 
+Utilice {\tt CASE DEFAULT} (para asignar los d\'igitos del 0 al 9).
+
+\prob{} Dado el arreglo {\tt a}, declarado de la siguiente manera  \\ 
+
+{\fontfamily{phv}\selectfont
+\hspace*{2cm}   real (kind(1.0)), dimension(50,20) :: a  \\ }
+
+\noindent
+escriba (papel y l\'apiz) {\em secciones} de este arreglo representando:
+\begin{enumerate}
+\item la primera fila de {\tt a};
+\item la \'ultima columna de {\tt a};
+\item un elemento de por medio en cada fila y columna.
+\end{enumerate}
+
+
+\prob{} Escriba un programa, que utilizando una subrutina, multiplique un
+vector de $N$ elementos, por una matriz de $N\times N$. El programa debe
+preguntar el valor de $N$ y luego definir los arreglos, y
+darle valores iniciales tal que, la matriz sea triangular superior, con todos
+sus elementos igual a 1, excepto los de la diagonal que toman valor 3, el vector
+tendra todos sus elementos pares igual a 2, y los impares igual a 3. 
+No utilice {\tt DO} para las inicializar el vector, ni {\tt DO} anidados para
+inicializar la matriz. 
+
+
+\prob{} Dado el siguiente programa y su correspondiente subrutina:
+
+\vspace{.3cm}
+
+\begin{minipage}{0.5\textwidth}
+{\fontfamily{phv}\selectfont
+\hspace*{1cm}   program test  \\
+\hspace*{1cm}   implicit none  \\
+\hspace*{1cm}   real(kind(1.)) :: x, y,s  \\
+\hspace*{1cm}   integer        :: i,j  \\
+\hspace*{1cm}   i = 6; j = 3; x = 4.; y = 8.   \\
+\hspace*{1cm}   call sum(i,x,s)  \\
+\hspace*{1cm}   write(*,'(F4.1," + ",F4.1," = ",F5.1)') real(i),x,s   \\
+\hspace*{1cm}   end program test}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+{\fontfamily{phv}\selectfont
+\hspace*{2cm}   \phantom{a}  \\
+\hspace*{2cm}   subroutine sum(z,w,ss)  \\
+\hspace*{2cm}   implicit none  \\
+\hspace*{2cm}   real(kind(1.)), INTENT(IN) \hspace{.3cm}  :: z, w  \\
+\hspace*{2cm}   real(kind(1.)), INTENT(OUT) :: ss  \\
+\hspace*{2cm}   ss = z + w  \\
+\hspace*{2cm}   end subroutine sum   } \\
+\end{minipage}
+
+\vspace{.3cm}
+\noindent
+Escriba, compile y ejecute el programa de las siguiente manera:
+\begin{enumerate}
+\item con el programa tal como esta, incluyendo la subrutina en el mismo archivo o en 
+archivo separado.
+
+\item modificando el programa con la cl\'ausula {\tt CONTAINS}, para que {\em contenga} a
+la subrutina.
+
+\item creando un modulo que contenga la subrutina, y usando este en el programa.
+
+%\item agregando al programa, antes de la primera l\'inea ejecutable, 
+%      el siguiente {\tt INTERFACE BLOCK}: 
+%
+%{\fontfamily{phv}\selectfont
+%\hspace*{3cm}  INTERFACE  \\
+%\hspace*{3.5cm}  subroutine sum(z,w,ss)  \\
+%\hspace*{3.5cm}  implicit none  \\
+%\hspace*{3.5cm}  real(kind(1.)), INTENT(IN) \hspace{.3cm}  :: z, w  \\
+%\hspace*{3.5cm}  real(kind(1.)), INTENT(OUT) :: ss  \\
+%\hspace*{3.5cm}  end subroutine sum(z,w,ss)  \\
+%\hspace*{3cm}  END INTERFACE} \\
+%\noindent
+%      incluyendo la subrutina en el mismo archivo o en archivo separado.
+
+\end{enumerate}
+\noindent
+Verifique que en el primer caso compila sin errores y produce {\em resultados incorrectos},
+y en los otros casos no.
+
+
+
+\prob{} Escriba un programa para calcular la posici\'on y la 
+velocidad en funci\'on del tiempo, para un problema de tiro oblicuo.
+Debe preguntar el \'angulo (en grados) y la velocidad 
+inicial (en m/seg.), asumiendo que el proyectil parte del origen. 
+Elija el incremento temporal ($\Delta t$) de manera que la gr\'afica
+tenga 600 puntos y abarque el intervalo entre el disparo y el instante en
+que el proyectil vuelve a tener altura 0. Utilice {\em funciones} para calcular
+la posici\'on y la velocidad. Escriba la salida del programa en un archivo
+de texto, con 5 columnas ($t$, $x(t)$, $y(t)$,$v_x(t)$,$v_y(t)$). La primera
+l\'inea debe comenzar con \#, e incluir la descripci\'on de los datos
+de cada columna. Los datos en la tabla deben tener 6 cifras significativas y
+estar escritos en notaci\'on exponencial. Grafique $x(t)$, $y(t)$ y $v_y(t)$ 
+en funci\'on de $t$, y la trayectoria del proyectil, utilizando {\em gnuplot}.
+
+
+
+\bigskip
+\bigskip
+\newpage
+\noindent {\bf Ejercicios Complementarios}
+
+% 6
+\prob{} Se pretende calcular las sumas $S_N = \sum_{k=1}^N a_k$, 
+donde $N$ es un n\'umero natural. Llamemos $S^{\prime}_N$ al valor calculado
+que se logra de hacer {\tt (float)}$(S_{N-1} + a_N)$.
+Sea $S_N = \sum_{k=1}^N 1/k$. Mostrar que $S^{\prime}_N$
+se estaciona a partir de alg\'un $N$ suficientemente grande. Deducir
+que a partir de entonces $S_N \neq S_N^{\prime}$. Hacer un programa
+que determine el valor a partir del cual $S_N^{\prime}$ se
+estaciona.
+% 
+
+\prob{} Para calcular un valor aproximado de $\pi$ utilizaremos la siguiente serie
+infinita alternante
+\begin{equation}
+\sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} = \frac{\pi}{4} \label{serie}
+\end{equation}
+Recordemos que una cota superior para el error cometido al truncar una serie
+alternante (de valor absoluto decreciente) est\'a dado por el valor absoluto del
+primer t\'ermino despreciado.
+Escriba un programa que ingrese el n\'umero de cifras decimales exactas con que se
+desea el valor de $\pi$ (entre 1 y 5 cifras) y devuelva en pantalla el n\'umero
+de t\'errminos que deben incluirse en la serie (\ref{serie}) para obtener dicha
+precisi\'on y a rengl\'on siguiente el valor de $\pi$ obtenido de esta forma, truncado 
+el resultado al n\'umero de cifras pedido.
+
+
+% 
+%\prob{} Escribir un programa que pida un n\'umero e imprima por pantalla 
+%su tabla de sumar.
+
+% 
+\prob{} Escribir un programa que pida una contrase\~na de tres d\'igitos y permita
+leer tres intentos.  Si el usuario da la contrase\~na correcta responde responde
+``Correcto'' y queda inactivo, con este mensaje.  En caso contrario el programa
+escribe ``Lo siento, contrase\~na equivocada'' y se cierra de inmediato.
+
+% 
+\prob{} Escribir un programa que, dado un a\~no y el nombre de un mes, 
+saque por pantalla el n\'umero de d\'ias del mes (tenga en cuenta que 
+algunos a\~nos son bisiestos). 
+
+% 
+\prob{} Escriba un programa que genere secuencialmente 10 archivos con nombre de salida diferentes (dependiendo del valor que tome alg\'un par\'ametro). En cada archivo, escriba bajo la forma de dupla $(x,f(x))$ una funci\'on evaluada en $N$ puntos y que tambi\'en dependa del par\'ametro (por ejemplo $y=sin(\omega \pi x)$, con $\omega = 1, 2, 3, \ldots $). El \textit{loop} debe cerrar cada archivo luego de escribir en \'el. En el mismo programa o en otro, construya otro \textit{loop} que abra secuencialmente los archivos y que (sin borrar los datos escritos) agregue otros $N$ puntos de la funci\'on $(x,f(x))$.
+
+\end{document}
+

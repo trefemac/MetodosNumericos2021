@@ -1,0 +1,306 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage{babel}
+\topmargin -.7truecm
+\textheight 23.5truecm
+\textwidth 16.5truecm
+\oddsidemargin 0.2truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: http://www.famaf.proed.unc.edu.ar/course/view.php?id=451} \\
+%{\small http://www.famaf.unc.edu.ar/$\sim$ftamarit/Numerico\_2017/} \\
+
+\rule{0em}{2.em}{\bf Gu\'{i}a 2} \\ Abril de 2020
+\end{center}
+
+% p1
+\prob{}
+Cree un directorio dentro de su directorio metnum, con nombre guia2. Luego copie el archivo $guia02$\_$2019.pdf$  
+que se encuentra dentro del directorio /tmp,  al directorio creado.
+
+		{\em Comentario: todo archivo que se cree dentro del /tmp (temporal) dura un tiempo finito. 
+En general se setea el sistema para que borre todo lo que est\'a dentro del temporal, cada vez que se reinicia 
+la m\'aquina. Conclusi\'on, c\'opielo ahora porque la pr\'oxima clase no estar\'a ahi.}
+
+
+
+% p
+\prob{} Use aritm\'etica de 4 d\'igitos (redondeando) para simular el problema del c\'alculo computacional
+de $\pi - \frac{22}{7}$. Luego calcule el error absoluto y el error relativo de la representci\'on de $\pi$ y de $\frac{22}{7}$,
+y el error relativo de la diferencia.
+
+% p2
+\prob{} Interprete el resultado de los siguiente programas en virtud de la representaci\'on
+de punto flotante de los n\'umeros reales.\\
+\begin{itemize}
+\item 
+{\fontfamily{phv}\selectfont
+\hspace*{4cm}  program test\textunderscore igualdad  \\
+\hspace*{4cm}  implicit none  \\
+\hspace*{4cm}  integer, parameter   \hspace*{0.5cm}  :: pr=kind(1.d0)  \hspace*{0.5 cm} ! pr puede ser simple o doble   \\ 
+
+\hspace*{4.2cm}  if (19.08\textunderscore pr + 2.01\textunderscore pr == 21.09\textunderscore pr) then  \\
+\hspace*{4.5cm}     write(*,*) '19.08 + 2.01 = 21.09 '  \\
+\hspace*{4.4cm}  else  \\
+\hspace*{4.6cm}     write(*,*) '19.08 + 2.01 /= 21.09 '  \\
+\hspace*{4.2cm}  endif  \\
+\hspace*{4cm}  end program test\textunderscore igualdad }  \\
+
+\item 
+{\fontfamily{phv}\selectfont
+\hspace*{4cm}  program test\textunderscore igualdad2  \\
+\hspace*{4cm}  implicit none  \\
+\hspace*{4cm}  integer, parameter   \hspace*{0.5cm}  :: pr=kind(1.d0)  \hspace*{0.5 cm} ! pr puede ser simple o doble   \\  
+\hspace*{4cm}  real(pr)             \hspace*{0.75cm} :: a  \\ 
+
+\hspace*{4.2cm}  a = 2.05\textunderscore pr  \\
+\hspace*{4.2cm}  if (a*100.\textunderscore pr  == 205.\textunderscore pr) then  \\
+\hspace*{4.5cm}     write(*,*) '2.05*100 = 205 '  \\
+\hspace*{4.4cm}  else  \\
+\hspace*{4.6cm}     write(*,*) '2.05*100 /= 205 '  \\
+\hspace*{4.2cm}  endif  \\
+\hspace*{4cm}  end program test\textunderscore igualdad2 }  \\
+
+\end{itemize}
+Piense el mensaje de este ejercicio, el cual debe tener presente en toda la materia.\\
+
+\prob{} Escriba un programa que calcule $\epsilon_m$ de su m\'aquina, en
+simple y doble precisi\'on.
+
+\newpage
+
+\prob{} De ejemplos para mostrar que la matem\'atica de punto flotante
+\begin{enumerate}
+\item no es cerrada respecto a la suma ni a la multiplicaci\'on, 
+\item no es asociativa respecto a la suma ni a la multiplicaci\'on,
+\item la multiplicaci\'on no es  distributiva respecto a la suma.  
+\end{enumerate} 
+Haga el programa Fortran correspondiente.
+
+%
+
+\prob{} Escriba un programa que comprueba las reglas de 
+la matem\'atica de no detenci\'on con {\tt $\pm$Infinity} , {\tt $\pm 0$} y
+{\tt NaN}. Luego, compile el mismo programa con la {\em opci\'on} 
+{\tt -ffpe-trap=zero,invalid,overflow} y compare los resultados.
+
+Nota: puede crear un {\em alias} en su archivo {\em .bashrc} para utilizar
+siempre el gfortran con esta opci\'on.
+
+
+\prob{} Escriba el siguiente programa y explique por qu\'e los valores
+obtenidos no son iguales: \\ 
+
+{\fontfamily{phv}\selectfont
+\hspace*{4cm}   program test  \\
+\hspace*{4cm}   implicit none  \\
+\hspace*{4cm}   integer, parameter   \hspace*{0.1cm}  :: pr = kind(1.0)\\
+\hspace*{4cm}   real(pr)         \hspace*{1.8cm}       :: sum0,sum1 \\
+\hspace*{4cm}   integer          \hspace*{1.9cm}     :: i  \\
+\hspace*{4cm}   ! \\
+\hspace*{4cm}   sum0 = 0.\_pr ; sum1 = 1.\_pr \\
+\hspace*{4cm}   do i=1,10000 \\
+\hspace*{4cm}   \hspace{.3cm} sum0 = sum0 + 1.e-8\_pr \\
+\hspace*{4cm}   \hspace{.3cm} sum1 = sum1 + 1.e-8\_pr \\ 
+\hspace*{4cm}   end do \\
+\hspace*{4cm}   sum0 = sum0 + 1.\_pr  \\
+\hspace*{4cm}   write(*,*) sum0, sum1  \\
+\hspace*{4cm}   end program test }
+
+
+% p3
+\prob{} Implementar un programa Fortran para evaluar la suma (en precisi\'on
+simple)
+\[
+\sum_{n=1}^{10\,000\,000} \frac{1}{n}
+\]
+\noindent
+primero, en el orden usual, y luego, en el orden opuesto. Explique las diferencias
+obtenidas  e indique cu\'al es m\'as preciso y su justificaci\'on.
+
+% 3
+\prob{} Efect\'ue con un programa en Fortran en simple precisi\'on los siguientes
+c\'alculos, matem\'aticamente equivalentes,
+
+\begin{enumerate}
+\item $1\,000\,000 \times 0.1$
+
+\item $\sum_{n=1}^{1\,000\,000} 0.1$
+
+\item $\sum_{m=1}^{1\,000} \left( \sum_{n=1}^{1\,000} 0.1\right)$
+
+
+\end{enumerate}
+\noindent
+
+{ Explique las diferencias obtenidas entre resultados finales de a), b) y c) y muestre que el error relativo en b) es del orden
+	del 1\%, pero es mucho menor en c). Resalte la conclusi\'on de este ejercicio. }
+
+
+\begin{enumerate}
+\item[{\bf d)}] En los puntos b) y c), vaya guardando con un write (cada 1000 iteraciones en el caso b, 
+y en todas las iteraciones de la suma externa en c), los errores parciales en un archivo de datos.  
+La primer columna con los valores de los \'indices (multiplicados por 1000 para el caso c) de las sumas 
+y segunda columna con el error parcial, i.e., la diferencia entre el valor de la respectiva suma parcial y el valor exacto ($i*0.1$).  
+Grafique usando {\em gnuplot}, los errores parciales de b) y c) superpuestas, en funci\'on del 
+\'indice correspondiente, en un archivo``prob9.ps" en color, con t\'itulo de gr\'afica``Problema 9, 
+Gu\'ia 2", con nombres adecuados en los ejes y con leyendas adecuadas. 
+Los datos del b), graficarla con puntos de tama\~no 0.75 (el default es 1), y los de c) con l\'inea
+de grosor 1.6 (el default es tambien 1). 
+Luego de ver c\'omo le queda la gr\'afica en escala lineal, cambie el eje x, 
+a escala logar\'itmica. Seg\'un su criterio, en qu\'e escala se 
+aprecia mejor el resultado del problema para su an\'alisis? Puede al eje $y$ darle escala 
+logar\'itmica? Pruebe qu\'e pasa si lo hace.
+Analice la conveniencia en general del uso de escalas logar\'itmicas.
+
+Finalmente deje el archivo grabado en escala lineal en $y$, y logar\'itmica en $x$, y diga el 
+tama\~no del mismo tanto en bytes como Kbytes. 
+
+Si prefiere a usar otro graficador, se incentiva a que lo usen, siempre y cuando logren el 
+archivo final con mismos requisitos que le pedimos.
+
+
+\end{enumerate}
+ 
+
+% 
+\prob{} Sup\'ongase que $x$ e $y$ son n\'umeros positivos correctamente redondeados
+a $t$ d\'igitos. Mostrar que la magnitud del error relativo de redondeo de
+$z=x-y$ est\'a acotada por
+$$
+\left| \frac{\Delta z}{z} \right| \leq \frac{|x| + |y|}{|x-y|}\ {\bf u} + {\bf u},
+$$
+\noindent
+donde ${\bf u}$ es la unidad de redondeo,  ${\bf u}=\frac12 \epsilon_M$
+
+
+% 4
+\prob{} La f\'ormula cuadr\'atica nos dice que las ra\'ices de $ax^2 + bx + c = 0$
+son
+$$
+x_1 = \frac{-b + \sqrt{b^2 -4ac}}{2a}, \qquad \qquad x_2 =  \frac{-b - \sqrt{b^2 -4ac}}{2a} .
+$$
+\noindent
+Si $b^2\gg 4ac$, entonces, cuando $b>0$ el c\'alculo de $x_1$ involucra en el
+numerador la sustracci\'on de dos n\'umeros casi iguales, mientras que si $b<0$,
+esta situaci\'on ocurre para el c\'alculo de $x_2$. ``Racionalizando el numerador''
+se obtienen las siguientes f\'ormulas alternativas que no sufren este problema:
+$$
+x_1 = \frac{-2c}{b + \sqrt{b^2 -4ac}}, \qquad \qquad x_2 =  \frac{2c}{-b + \sqrt{b^2 -4ac}} ,
+$$
+\noindent
+siendo la primera adecuada cuando $b>0$, y la segunda cuando $b<0$.
+Escriba un programa en precisi\'on simple que utilice la f\'ormula usual y la 
+``racionalizada'' para calcular las ra\'ices de
+$$
+x^2 + 6210 x + 1 = 0.
+$$
+\noindent 
+Interprete los resultados.
+
+\bigskip
+
+
+
+%6 
+\prob{ Problema matem\'aticamente inestable. } Considere la sucesi\'on 
+\begin{equation}
+\label{recurrencia}
+x_n\,=\,\frac{13}{3} \,x_{n-1} - \frac{4}{3}\, x_{n-2} \,.
+\end{equation}
+
+\begin{enumerate}
+\item Demuestre que, eligiendo $x_0=1\;,x_1=1/3$ tenemos que  $x_n=1/3^n\;\forall n\geq 0$ 
+(sugerencia: use inducci\'on).
+\item Haga un c\'odigo fortran que calcule  $x_n$ y su error relativo hasta $n=15$ y discuta
+el resultado comparando reales de 4 y 8 bytes. 
+\item Defina $y_n=1/x_n$ y encuentre la relaci\'on de recurrencia para  $y_n$. Imponga la 
+condici\'on inicial $y_0=1, \;y_1=3$. Calcule ahora $x_n=1/y_n$ y compare con lo obtenido en el 
+punto anterior. Es este algoritmo estable? discuta.
+\item Verifique que la soluci\'on general de la ecuaci\'on (\ref{recurrencia}) con $x_0,\,x_1$ 
+arbitrarios es
+\[
+x_n\,=\,\frac{A}{3^n} \,+\,B\,4^n\, .
+\]
+\noindent
+Note que los valores iniciales elegidos en a) y b) corresponden al
+caso particular $A=1$ y $B=0$. Discuta en base a esto los resultados num\'ericos obtenidos.
+\end{enumerate}
+
+\bigskip
+
+
+
+
+\noindent {\bf Ejercicios Complementarios}
+
+
+%
+\prob{} Suponga que los puntos $(x_0,y_0)$ y $(x_1,y_1)$ est\'an en una l\'inea recta, con $y_1=/y_0$.
+Se dispone de dos f\'ormulas para obtener el valor $x^*$ de la intersecci\'on de la recta con el eje {\em x}:
+\[
+x^* = \frac{x_0y_1 - x_1 y_0}{y_1-y_0} \qquad \qquad y  \qquad \qquad
+x^* = x_0 - \frac{(x_1-x_0) y_0}{y_1-y_0}
+\]
+\begin{enumerate}
+\item Muestre que ambas f\'ormulas son algebraicamente correctas
+\item Use los datos $(x_0,y_0) = (1.31,3.24)$ y $(x_1,y_1) = (1.93,4.76)$ y aritm\'etica de tres d\'igitos
+para calcular $x^*$ de ambas formas.  Cu\'al m\'etodo es mejor? Por qu\'e'? 
+\end{enumerate}
+
+%5
+\prob{} Considere las siguientes integrales
+\[
+y_n = \int_0^1 \frac{x^n}{x+10}dx
+\]
+\noindent 
+para $n=1,2,\dots ,30$. Muestre que
+\[
+y_n = \frac{1}{n} - 10 y_{n-1} \ ,
+\]
+\noindent
+y que  $y_0 = \ln(11) - \ln(10)$.
+Note que empleando esta f\'ormula de recursi\'on, se obtienen los
+resultados exactos de las integrales.  
+
+\begin{enumerate}
+\item Escriba un programa en precisi\'on simple que a partir
+de $y_0$, calcule recursivamente $y_i$ para $i=2,\cdots ,30$. 
+Explique los resultados obtenidos (note que $0 < y_n < 1$).
+
+\item Derive una f\'ormula para evaluar $y_{n-1}$ dado
+$y_n$. Escriba un programa que utilice esta recursi\'on
+para calcular $y_n$, aproximando $y_{n+k}$ por 0.
+Explique por qu\'e este algoritmo es estable. Encuentre
+el valor de $k$, para que el programa calcule $y_{7}$ con un error 
+absoluto menor a $10^{-6}$ (note que $y_7 \approx 0.0114806$).
+
+\item Modifique el programa para que tome como entrada $n$, y el
+error absoluto deseado, $\epsilon$, y luego estimando el error absoluto
+en el calculo de $y_n$ como $Err = |\hat{y}_n(y_{n+k}=0) - \hat{y}_n(y_{n+k-1}=0)|$
+($\hat{y}_n(y_{n+k}=0)$ es el valor de $y_n$ obtenido partiendo de $y_{n+k}=0)$),
+determine $y_n$ con un error absoluto (aproximado) menor que $\epsilon$.
+
+\end{enumerate}
+
+\end{document}

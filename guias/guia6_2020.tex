@@ -1,0 +1,287 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+
+\topmargin 0truecm
+\textheight 22truecm
+\textwidth 17truecm
+\oddsidemargin 0truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Problema \arabic{problema}:}{\it #1}}
+
+\newcommand{\itemEq}[1]{%
+        \begingroup%
+        \setlength{\abovedisplayskip}{0pt}%
+        \setlength{\belowdisplayskip}{0pt}%
+        \parbox[c]{\linewidth}{\begin{flalign*}#1&&\end{flalign*}}%
+        \endgroup}
+
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+
+\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+
+\rule{0em}{2.em{\bf}Gu\'ia 6} \\  Mayo de 2020
+\end{center}
+
+
+\prob{}
+Encuentre, haciendo los c\'alculos a mano, las aproximaciones 
+a las siguientes integrales definidas utilizando las f\'ormulas del 
+trapecio, Simpson y punto medio (simples):
+\begin{enumerate}
+
+\item \itemEq{I_1 = \int_0^1 x^4 dx}
+
+\item \itemEq{I_2 = \int_0^{\pi} \sin{(x)} dx} 
+
+\end{enumerate}
+Trabaje con siete cifras significativas. Calcule el error absoluto y el error 
+relativo en cada caso y para cada método.
+
+\prob{}  Repita el Problema 1 dividiendo el intervalo de integración en 
+dos subintervalos de igual tamaño:
+\begin{enumerate}
+
+\item \itemEq{I_1=\int_0^1 x^4 dx+ \int_1^2 x^4 dx}
+
+\item \itemEq{I_2=\int_0^{\pi/2}\sin{(x)}dx+\int_{\pi/2}^{\pi}\sin{(x)} dx} 
+
+\end{enumerate}
+Trabaje con siete cifras significativas. Calcule el error absoluto y 
+el error relativo en cada caso y compare con los resultados del problema 1.
+
+
+\prob{}
+\begin{enumerate}
+\item Realice un programa que encuentre  las aproximaciones numéricas $S_T$ y $S_S$ a la integral:
+\[
+I = \int_a ^b f(x) dx
+\]
+utilizando  la regla compuesta del {\em trapecio} y la de {\em Simpson}, respectivamente.  
+Debe evaluar el integrando $f(x)$ en $n+1$ puntos equiespaciados  $x_i$ ($i=0,1,2, \ldots , n$) 
+con espaciamiento $h=(b-a)/n$. La salida debe ser las dos aproximaciones.
+El programa
+debe escribirse en  doble precisión y  debe utilizar un m\'odulo de precisi\'on y un m\'odulo con dos
+subrutinas \verb!trapecio! y \verb!simpson!. 
+
+\item Utilizando el programa realizado en el punto  anterior, encuentre las
+dos aproximaciones num\'ericas $S_T$ y $S_S$ a la integral:
+\[
+I = \int _0 ^1 e^{-x} dx \, .
+\]
+Utilice un espaciamiento $h_1=0,05$ em ambos casos. Luego repita el procedimiento disminuyendo su 
+espaciamiento a la mitad, $h_2=h_1/2=0,025$.
+
+
+\item Teniendo en cuenta que es posible conocer el resultado
+exacto de la integral en cuesti\'on, eval\'ue el error
+$\varepsilon(h)=|S-I|$, para $h=0.05$ y $h=0.025$. Verifique que
+el cociente de precisión, definido como 
+\[
+Q = \frac{\varepsilon(h)}{\varepsilon(h/2)} \, ,
+\]
+toma un valor aproximado a $4$ cuando se usa la regla compuesta del 
+{\em trapecio}, y un valor aproximado a $16$ cuando se usa la regla 
+compuesta de {\em Simpson}. Teniendo en cuenta la expresi\'on del 
+error de truncamiento en cada caso, justifique este resultado.
+\end{enumerate}
+
+
+
+ {\em Consejo:} tener cuidado con {\em Simpson} en elegir siempre un número 
+par de intervalos, {\it i.e}, un número impar de puntos (pruebe con una integral 
+que conoce su resultado qué resultado le da cuando usa un número impar de intervalos).
+
+
+\prob{} Usando el programa del punto a) del problema 3, aproxime las 
+si\-guien\-tes integrales con un error relativo menor a $10^{-7}$ 
+(utilice doble precisi\'on). Indique, en cada caso, el n\'umero de 
+puntos utilizado.\\
+\begin{enumerate}
+
+\item \itemEq{ \int_0^{0.5} \frac{2}{x-4} \; dx } 
+
+\item \itemEq{  \int_1^{1.5} x^2 \log x \; dx } 
+
+\end{enumerate}
+
+{\it Sugerencia 1:} antes de programar grafique el integrando y analice su comportamiento 
+dentro del intervalo dado. Si puede estime el resultado, al menos el signo del \'area 
+esperada. Este an\'alisis previo  da criterio para saber si el resultado num\'erico es correcto.\\
+
+{\it Sugerencia 2:} abra archivos de escritura con  atribuciones  como status, etc... y escriba 
+con formato de escritura exponencial, en columnas separadas con los espacios que elija. Es 
+buena costumbre tambi\'en escribir el nombre arriba de cada columna de datos.
+
+
+\prob{ Cuadratura de Gauss--Legendre. Comparaci\'on con otros m\'etodos}
+
+\begin{enumerate}
+\item Escriba un programa que calcule la integral
+\begin{equation*}
+I = \int_0^1 e^{-t} dt = 1 - e^{-1}  \nonumber              
+\end{equation*}
+utilizando la cuadratura de Gauss--Legendre. Para calcular los puntos y pesos necesarios
+use la subrutina {\em gauss} que se provee.
+
+\item Calcule el error relativo $\epsilon = |(num\acute{e}rico - 
+exacto)/exacto |$ para distintos valores del n\'umero de puntos de integraci\'on, $N$. 
+Considere valores de $N$ consecutivos hasta 100, y luego de 100 en 100 hasta $N=3000$. 
+Repita el c\'alculo empleando los algoritmos de Simpson y Trapecio utilizando el programa
+del problema 3.
+
+\item Haga un gr\'afico {\em log-log} comparativo de  los errores relativos {\em versus} $N$. Observe 
+que
+
+\[ 
+\epsilon \approx CN^\alpha => \log \epsilon = \alpha \log N + constante.
+\]
+\noindent
+Esto significa que una dependencia como ley de potencia aparece como
+una l\'inea recta en un gr\'afico {\em log-log}.
+
+\item Use el gr\'afico para estimar las leyes de potencia de la dependencia del error
+$\epsilon$ con el n\'umero de puntos $N$ y para determinar el n\'umero cifras 
+decimales de precisi\'on en cada m\'etodo. Haga esto tanto para el error del algoritmo como para el
+de redondeo.
+
+\item Repita los incisos anteriores usando doble precisi\'on.
+
+\end{enumerate}
+
+\prob{}  Modifique el programa del problema 3.a) para leer  archivos de datos que contienen 
+en la primer columna los puntos de integración y en la segunda columna el valor de la función 
+a integrar. Copie  de  \verb!/opt/metnum! a  su directorio los archivos \verb!mediciones1-p4.dat!  
+y \verb!mediciones2-p4.dat! y realice  ambas integrales. El primer archivo corresponde a un 
+muestreo con 629 puntos y el segundo con 10001 puntos 
+del mismo intervalo de integración. Observe los datos medidos y su periodicidad.  \\[1cm]
+
+
+
+%\newpage
+
+\noindent {\bf Ejercicios Complementarios}
+
+
+\prob{}  Idem problema 4, para las siguientes integrales: 
+\begin{enumerate}
+\item \itemEq{ \int_{0.5}^1 x^4 dx } 
+
+\item \itemEq{ \int_0^{\frac{\pi}{4}} x \sin x dx }
+  
+\end{enumerate}
+
+
+
+\prob{ Cuadratura de Gauss-Legendre de 3 puntos}
+\begin{enumerate}
+\item Calcule los puntos y pesos correspondientes a la cuadratura de Gauss-Legendre 
+(G-L)
+de 3 puntos, esto es, intervalo $[-1,1]$ y funci\'on de peso $w(x)=1$.
+\item Utilice cuadraturas de  G-L de 2 y 3 puntos  para estimar  la 
+integral
+\[
+\int_1^{3/2}  \, e^{-x^2}\,dx\,,
+\]
+
+\noindent y compare los errores relativos de ambas.
+\item Realice ahora la integral utilizando los c\'odigos que escribi\'o para 
+cuadraturas de trapezoide y Simpson al mismo error relativo que G-L de 3 puntos. 
+Qué valores de $N$ debe usar en cada caso?
+\end{enumerate}
+
+\prob{ Integraci\'on num\'erica en dos dimensiones } 
+\begin{enumerate}
+\item Haga un programa que integre funciones en la region $a\le x \le b\,;\;
+ c \le y \le d$ siguiendo el c\'odigo delineado en la clase te\'orica, usando el
+ m\'etodo de cuadratura de Simpson en cada coordenada.
+ \item Evalue n\'umericamente con no menos de 8  cifras significativas las integrales
+ \[
+ \int_0^2\,dx\, \int_0^1\,dy\, e^{-x\,y} \;\;\;\;\;\;\;;\;\;\;\;\;\;\;
+ \int_{1.4}^2\,dx\, \int_1^{3/2}\,dy\, \ln{(x+2 y)}
+ \]
+ \item Modifique el programa para permitir que los l\'{\i}mites de integraci\'on en $y$ sean funci\'on de $x$ y evalue la integral
+ \[
+ \int_0^1\,dx\, \int_0^{\sqrt{1-x^2}}\,dy\, e^{-x\,y} 
+ \]
+\end{enumerate}
+
+
+
+\prob{ F\'ormula de Integraci\'on de Newton--Cotes}.
+
+Estas f\'ormulas se basan 
+en la idea de integrar una funci\'on polinomial en vez de $f(x)$, i.e.
+\[
+I = \int_a^b f(x) dx \approx \int_a^b P_n(x) dx
+\]
+\noindent
+donde $P_n(x)$ es el polinomio interpolante de grado $n$ para ciertos 
+valores de  $x$ que se escogen apro\-pia\-damente en el intevalo $[a,b]$.
+Muestre que si se eligen puntos equiespaciados y que incluyan los extremos 
+(f\'ormula cerrada), los casos  $n=1$ y $n=2$ corresponden a la regla del
+{\em trapecio} y de {\em Simpson}, respectivamente. {\em Ayuda}: use la forma de Lagrange para el
+polinomio interpolante, y calcule los pesos de la f\'ormula de integraci\'on 
+resultante.
+
+% 
+% \prob{ F\'ormula de integraci\'on de Euler-McClaurin} 
+% \begin{enumerate}
+% 
+% \item Deduzca la f\'ormula  de integraci\'on de Euler-McClaurin:
+% 
+% \[
+% \int_a^b \,f(x) \,dx\,=\,h\,\left( \frac{f(a)}{2}+f(x_1)+\ldots+f(x_{N-1})+\frac{f(b)}{2} \right)\,+\,
+% \frac{h^2}{12} \,\left( f'(a)-f'(b)\right)\,+\,\mbox{O}(h^4)
+% \]
+% 
+% \item  Muestre que integra exactamente polinomios de grado 3.
+% \end{enumerate}
+% 
+% 
+% \prob{ Cuadratura de Gauss-Laguerre de 2 puntos}
+% \begin{enumerate}
+% \item Calcule los puntos y pesos correspondientes a la cuadratura de Gauss-Laguerre
+% (G-La) de 2 puntos, esto es, intervalo $[0,\infty)$ y funci\'on de peso $w(x)=exp(-x)$.
+% \item La integral
+% \[
+% \int_{0}^\infty \, \frac{x^3}{e^{x}-1}\,dx
+% \]
+% 
+% \noindent aparece en el tratamiento de la radiaci\'on de cuerpo negro de Planck que da
+% nacimiento a la mec\'anica cu\'antica en el a\~no 1900. Evalue la misma usando
+% la cuadratura de Gauss-Laguerre de 2 puntos y calcule el error relativo.
+% \end{enumerate}
+% 
+% \prob{ Cuadratura de Gauss-Hermite de 3 puntos}
+% \begin{enumerate}
+% \item Calcule los puntos y pesos correspondientes a la cuadratura de Gauss-Hermite (G-H)
+% de 3 puntos, esto es, intervalo $(-\infty,\infty)$ y funci\'on de peso 
+% $w(x)=exp(-x^2)/\sqrt{\pi}$.
+% \item Utilice cuadraturas de  G-H de 2 y 3 puntos  para estimar  la
+% integral
+% \[
+% \int_{-\infty}^\infty \, \frac{e^{-x^2}}{\sqrt{\pi}}\,e^x\,dx\,,
+% \]
+% 
+% \noindent y compare los errores relativos de ambas.
+%\end{enumerate}
+\end{document}
