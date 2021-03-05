@@ -54,7 +54,8 @@ A continuación (una vez instalado) salga del administrador de paquetes con el c
     using IJulia
     notebook()
     
-La primera vez que ejecute este comando tomará un tiempo apreciable hasta que se complete el cargado del sofware y se compile el código. Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
+La primera vez que ejecute este comando tomará un tiempo apreciable hasta que se complete el cargado del sofware y se compile el código. En particular, la primera vez le preguntará si desea instalar **Jupyter**, si no lo tiene ya instalado acceda a ello. En tal caso instalará otro paquete, llamado `Conda.jl`. 
+Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
 Cada vez que comienze a trabajar deberá llamar al REPL e ingresar los dós últimos comandos. 
 
 
