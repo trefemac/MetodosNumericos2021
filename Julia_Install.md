@@ -6,7 +6,7 @@ Aqui daremos las instrucciones para instalar Julia y otros accesorios.
 
 La instalación de los binarios de Julia es bastante sencilla:
     
-        Ir a la página: https://julialang.org/downloads/
+        Ir a la [página: ](https://julialang.org/downloads/)
         
 Allí elija la instalación de acuerdo al sistema operativo de su computadora. Hoy en día casi todas las computadoras ya son de 64bits, 
 pero por las dudas constate si no es de 32 bits, en tal caso use el apropiado.
@@ -40,8 +40,22 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
         se pueden correr códigos en Python. Si ya lo tiene instalado entonces puede usar este directamente de acuerdo a lo 
         que indican [aquí](https://datatofish.com/add-julia-to-jupyter/) (para Windows). Para Linux usar **anaconda**.
         
-   c) `Pluto`, es un nuevo tipo de notebook que es muy intersante y tiene varias ventajas sobre los otros. Pero estas ventajas también lo hacen complicado para personas con poca experiencia en la escritura de códigos. 
+   c) `Pluto`, es un nuevo tipo de notebook que es muy intersante y tiene varias ventajas sobre los otros. Pero estas ventajas también lo hacen complicado para personas con poca experiencia en la escritura de códigos. Por lo tanto **No lo recomendamos**. 
+   De todos modos, las instrucciones para instalarlos están [aquí](https://github.com/fonsp/Pluto.jl)
    
-   
-        
+ ## Instalando IJulia
+ 
+ Para ello debe instalar el *paquete* con el código necesario. En la consola REPL ingrese el comando `]`eso le dará acceso al administrador de paquetes. Una ves allí escriba: 
+ 
+    add Ijulia
+    
+A continuación (una vez instalado) salga del administrador de paquetes con el comando `borrar` o `delete` e ingrese:
+
+    using IJulia
+    notebook()
+    
+La primera vez que ejecute este comando tomará un tiempo apreciable hasta que se complete el cargado del sofware y se compile el código. Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
+Cada vez que comienze a trabajar deberá llamar al REPL e ingresar los dós últimos comandos. 
+
+
        
