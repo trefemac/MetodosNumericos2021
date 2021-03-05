@@ -4,7 +4,7 @@ Aqui daremos las instrucciones para instalar Julia y otros accesorios.
 
 ### Instalando Julia:
 
-La instalación de los binarios de Julia es bastante sencilla:
+La instalación de los binarios (ejecutable o codigo pre-compilado) de Julia es bastante sencilla:
     
         Ir a la [página: ](https://julialang.org/downloads/)
         
@@ -13,7 +13,7 @@ pero por las dudas constate si no es de 32 bits, en tal caso use el apropiado.
         
         Siga las instrucciones de instalación de acuerdo a su sistema. 
         
-En todos los sistemas, luego de la instalación, la ejecución les dará una ```Terminal``` donde estará ejecutando el REPL. 
+En todos los sistemas, luego de la instalación, la ejecución les dará una ```Terminal``` donde estará ejecutando el REPL (del ingles Read Eval Print Loop, una terminal o consola en donde se pueden ir ejecutando comandos de manera sucesiva). 
 Allí ya puede ejecutar comandos de Julia. 
 
 ### Trabajando con Julia
@@ -23,6 +23,16 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
 **1.** **Editor de texto** Usualmente para trabajar con códigos un poquito complicados es mejor hacerlo usando un editor de texto apropiado. 
     Es decir un editor que comprenda la sintaxis de Julia y nos marque distintas partes del código, 
     incluso nos ayude con la documentación. Para linux recomendamos `kate` o `geany`. Para Windows recomendamos [geany](https://www.geany.org/download/nightly-builds/) o [notepad++](https://notepad-plus-plus.org/downloads/v7.9.3/)
+        
+   Para ejecutar programas creados con un editor de texto, veamos un ejemplo. Cree con su editor de texto un archivo llamado `miprograma.jl` y guardelo en su carpeta preferida, por ejemplo, la carpeta `numerico`. Dentro de dicho archivo ingrese los siguientes comandos
+   
+    println("Hola mundo!")
+    
+   Guarde los cambios. Luego, abra una terminal de su sistema operativo en la carpeta mencionada. Luego, ingrese el comando
+   
+    numerico/julia miprograma.jl
+    
+   y presione enter. Julia ejecutara el codigo especificado en el archivo `miprograma.jl` y, si todo sale bien, imprimira en pantalla el mensaje `Hola mundo!`.
     
 **2. Usando notebooks** Una vez que hayan adquirido un poco de experiencia es recomendable usar notebooks. 
     Los notebooks se trabajan en el browser que está configurado como principal es su sistema. 
@@ -32,8 +42,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
     
    Para Julia tenemos al menos 3 posibilidades: 
         
-   a) `Ijulia`, (**recomendado**) es un notebook similar a Jupyter, pero nativo de Julia. Las instrucciones para su instalació
-        instalación las pueden encontrar [aquí:](https://github.com/JuliaLang/IJulia.jl)
+   a) `Ijulia`, (**recomendado**) es un notebook similar a Jupyter, pero nativo de Julia. Las instrucciones para su instalación las pueden encontrar [aquí:](https://github.com/JuliaLang/IJulia.jl)
         
         
    b) `Jupyter`, es muy similar al anterior, pero su instalación es un poquito más compleja. Tiene la ventaja que allí 
@@ -45,18 +54,18 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
    
  ## Instalando IJulia
  
- Para ello debe instalar el *paquete* con el código necesario. En la consola REPL ingrese el comando `]`eso le dará acceso al administrador de paquetes. Una ves allí escriba: 
+ Para ello debe instalar el *paquete* con el código necesario. En la consola REPL ingrese el comando `]`. Esto le dará acceso al administrador de paquetes. Una ves allí escriba: 
  
     add Ijulia
     
-A continuación (una vez instalado) salga del administrador de paquetes con el comando `borrar` o `delete` e ingrese:
+A continuación (una vez instalado) salga del administrador de paquetes con el comando `borrar` o `delete`, e ingrese:
 
     using IJulia
     notebook()
     
-La primera vez que ejecute este comando tomará un tiempo apreciable hasta que se complete el cargado del sofware y se compile el código. En particular, la primera vez le preguntará si desea instalar **Jupyter**, si no lo tiene ya instalado acceda a ello. En tal caso instalará otro paquete, llamado `Conda.jl`. 
+La primera vez que ejecute este comando tomará un tiempo apreciable hasta que se complete el cargado del sofware y se compile el código del recientemente instalado `IJulia`. En particular, la primera vez le preguntará si desea instalar **Jupyter**. Si no lo tiene ya instalado, acceda a ello. En tal caso instalará otro paquete, llamado `Conda.jl`.
 Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
-Cada vez que comienze a trabajar deberá llamar al REPL e ingresar los dós últimos comandos. 
+Cada vez que desee trabajar en una nueva sesion de `IJulia`, deberá iniciar el administrador de notebooks ingresando en el REPL los dós últimos comandos antes mencionados. 
 
 
        
