@@ -22,7 +22,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
     
 **1.** **Editor de texto** Usualmente para trabajar con códigos un poquito complicados es mejor hacerlo usando un editor de texto apropiado. 
     Es decir un editor que comprenda la sintaxis de Julia y nos marque distintas partes del código, 
-    incluso nos ayude con la documentación. Para linux recomendamos `kate` o `geany`. Para Windows recomendamos 
+    incluso nos ayude con la documentación. Para linux recomendamos `kate` o `geany`. Para Windows recomendamos [geany](https://www.geany.org/download/nightly-builds/) o [notepad++](https://notepad-plus-plus.org/downloads/v7.9.3/)
     
 **2. Usando notebooks** Una vez que hayan adquirido un poco de experiencia es recomendable usar notebooks. 
     Los notebooks se trabajan en el browser que está configurado como principal es su sistema. 
